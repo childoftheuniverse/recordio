@@ -46,7 +46,7 @@ func TestSerializeAndReadBytes(t *testing.T) {
 	}
 
 	// Reset position.
-	buf.Close(ctx)
+	writer.Close(ctx)
 
 	reader = NewRecordReader(buf)
 	rbuf = make([]byte, 20)
@@ -122,7 +122,7 @@ func TestSerializeAndReadRecord(t *testing.T) {
 	}
 
 	// Reset position.
-	buf.Close(ctx)
+	writer.Close(ctx)
 
 	reader = NewRecordReader(buf)
 
@@ -180,7 +180,7 @@ func TestSerializeAndReadMessage(t *testing.T) {
 	}
 
 	// Reset position
-	buf.Close(ctx)
+	writer.Close(ctx)
 	reader = NewRecordReader(buf)
 	data.Reset()
 
@@ -231,7 +231,7 @@ func BenchmarkRecordWriterAndReader(b *testing.B) {
 	}
 
 	// Reset position
-	buf.Close(ctx)
+	writer.Close(ctx)
 	reader = NewRecordReader(buf)
 	for i = 0; i < b.N; i++ {
 		rbuf, err = reader.ReadRecord(ctx)
